@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import ua.opnu.java.inheritance.account.Credit;
-import ua.opnu.java.inheritance.account.Debit;
-import ua.opnu.java.inheritance.account.Startup;
+import ua.opnu.MinMaxAccount;
+import ua.opnu.account.Credit;
+import ua.opnu.account.Debit;
+import ua.opnu.account.Startup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +16,7 @@ public class Task2Test {
         @org.junit.jupiter.api.Test
         @DisplayName("Test constructor 1")
         void test1() {
-            MinMaxAccount account = new MinMaxAccount(new Startup(150));
+            var account = new MinMaxAccount(new Startup(150));
 
             int expected = 150;
             assertEquals(expected, account.getBalance());
