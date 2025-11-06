@@ -1,35 +1,47 @@
+package ua.opnu;
+
+import ua.opnu.account.Credit;
+import ua.opnu.account.Debit;
+import ua.opnu.account.Startup;
+
 public class MinMaxAccount extends BankingAccount {
-    private int min;
-    private int max;
+    private int minBalance;
+    private int maxBalance;
 
-    public MinMaxAccount(ua.opnu.java.inheritance.account.Startup s) {
+    public MinMaxAccount(Startup s) {
         super(s);
-        this.min = balance;
-        this.max = balance;
-    }
-
-    private void updateMinMax() {
-        if (balance < min) min = balance;
-        if (balance > max) max = balance;
+        int balance = getBalance();
+        minBalance = balance;
+        maxBalance = balance;
     }
 
     @Override
-    public void credit(ua.opnu.java.inheritance.account.Credit c) {
-        super.credit(c);
-        updateMinMax();
-    }
-
-    @Override
-    public void debit(ua.opnu.java.inheritance.account.Debit d) {
+    public void debit(Debit d) {
         super.debit(d);
         updateMinMax();
     }
 
+    @Override
+    public void credit(Credit c) {
+        super.credit(c);
+        updateMinMax();
+    }
+
+    private void updateMinMax() {
+        int balance = getBalance();
+        if (balance < minBalance) {
+            minBalance = balance;
+        }
+        if (balance > maxBalance) {
+            maxBalance = balance;
+        }
+    }
+
     public int getMin() {
-        return min;
+        return minBalance;
     }
 
     public int getMax() {
-        return max;
+        return maxBalance;
     }
 }

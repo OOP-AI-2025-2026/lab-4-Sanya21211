@@ -1,24 +1,24 @@
+package ua.opnu;
+
+import ua.opnu.bill.Employee;
+import ua.opnu.bill.Item;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GroceryBill {
-    private final ua.opnu.java.inheritance.bill.Employee clerk;
-    protected final java.util.List<ua.opnu.java.inheritance.bill.Item> items = new java.util.ArrayList<>();
+    private Employee clerk;
+    private List<Item> items = new ArrayList<>();
 
-    public GroceryBill(ua.opnu.java.inheritance.bill.Employee clerk) {
-        this.clerk = clerk;
-    }
+    public GroceryBill(Employee clerk) { this.clerk = clerk; }
 
-    public ua.opnu.java.inheritance.bill.Employee getClerk() {
-        return clerk;
-    }
-
-    public void add(ua.opnu.java.inheritance.bill.Item i) {
-        items.add(i);
-    }
+    public void add(Item i) { items.add(i); }
 
     public double getTotal() {
-        double sum = 0.0;
-        for (ua.opnu.java.inheritance.bill.Item i : items) {
-            sum += i.getPrice();
-        }
-        return sum;
+        double total = 0;
+        for (Item i : items) total += i.getPrice();
+        return total;
     }
+
+    public Employee getClerk() { return clerk; }
 }

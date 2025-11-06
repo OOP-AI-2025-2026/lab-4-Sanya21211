@@ -1,5 +1,6 @@
 package ua.opnu;
-import ua.opnu.java.inheritance.point.Point;
+
+import ua.opnu.point.Point;
 
 public class Point3D extends Point {
     private int z;

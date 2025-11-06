@@ -1,21 +1,22 @@
+package ua.opnu;
+
+import ua.opnu.bill.Employee;
+import ua.opnu.bill.Item;
+
 public class DiscountBill2 {
     private final GroceryBill bill;
     private final boolean regularCustomer;
     private int discountCount;
     private double discountAmount;
 
-    public DiscountBill2(ua.opnu.java.inheritance.bill.Employee clerk, boolean regularCustomer) {
+    public DiscountBill2(Employee clerk, boolean regularCustomer) {
         this.bill = new GroceryBill(clerk);
         this.regularCustomer = regularCustomer;
         this.discountCount = 0;
         this.discountAmount = 0.0;
     }
 
-    public ua.opnu.java.inheritance.bill.Employee getClerk() {
-        return bill.getClerk();
-    }
-
-    public void add(ua.opnu.java.inheritance.bill.Item i) {
+    public void add(Item i) {
         bill.add(i);
         if (regularCustomer) {
             double d = i.getDiscount();
@@ -27,8 +28,8 @@ public class DiscountBill2 {
     }
 
     public double getTotal() {
-        double full = bill.getTotal();
-        double result = regularCustomer ? (full - discountAmount) : full;
+        double base = bill.getTotal();
+        double result = regularCustomer ? (base - discountAmount) : base;
         return Math.round(result * 100.0) / 100.0;
     }
 
@@ -44,6 +45,14 @@ public class DiscountBill2 {
         double full = bill.getTotal();
         if (full <= 0.0) return 0.0;
         double disc = regularCustomer ? discountAmount : 0.0;
-        return (disc * 100.0) / full;
+        return Math.round((disc * 100.0 / full) * 1e14) / 1e14;
+    }
+
+    public Employee getClerk() {
+        return bill.getClerk();
+    }
+
+    public boolean isRegularCustomer() {
+        return regularCustomer;
     }
 }

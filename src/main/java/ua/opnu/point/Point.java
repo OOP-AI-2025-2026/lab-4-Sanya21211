@@ -1,4 +1,5 @@
-package ua.opnu;java.inheritance.point;
+package ua.opnu.point;
+
 
 public class Point {
     public int x;

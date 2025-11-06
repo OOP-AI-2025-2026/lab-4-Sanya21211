@@ -1,9 +1,14 @@
+package ua.opnu;
+
+import ua.opnu.bill.Employee;
+import ua.opnu.bill.Item;
+
 public class DiscountBill extends GroceryBill {
     private final boolean regularCustomer;
     private int discountCount;
     private double discountAmount;
 
-    public DiscountBill(ua.opnu.java.inheritance.bill.Employee clerk, boolean regularCustomer) {
+    public DiscountBill(Employee clerk, boolean regularCustomer) {
         super(clerk);
         this.regularCustomer = regularCustomer;
         this.discountCount = 0;
@@ -11,7 +16,7 @@ public class DiscountBill extends GroceryBill {
     }
 
     @Override
-    public void add(ua.opnu.java.inheritance.bill.Item i) {
+    public void add(Item i) {
         super.add(i);
         if (regularCustomer) {
             double d = i.getDiscount();
@@ -41,6 +46,6 @@ public class DiscountBill extends GroceryBill {
         double full = super.getTotal();
         if (full <= 0.0) return 0.0;
         double disc = regularCustomer ? discountAmount : 0.0;
-        return (disc * 100.0) / full;
+        return Math.round((disc * 100.0 / full) * 1e14) / 1e14;
     }
 }

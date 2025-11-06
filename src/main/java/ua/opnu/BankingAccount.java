@@ -1,19 +1,39 @@
-public class BankingAccount {
-    protected int balance;
+package ua.opnu;
 
-    public BankingAccount(ua.opnu.java.inheritance.account.Startup s) {
-        this.balance = s.getInitialBalance();
+import ua.opnu.account.Credit;
+import ua.opnu.account.Debit;
+import ua.opnu.account.Startup;
+
+
+public class BankingAccount {
+    private int balance;
+
+    public BankingAccount(Startup s) {
+        this.balance = s.getBalance();
+    }
+
+    public void debit(Debit d) {
+        balance += d.getBalance();
+    }
+
+    public void credit(Credit c) {
+        balance += c.getBalance();
     }
 
     public int getBalance() {
         return balance;
     }
 
-    public void credit(ua.opnu.java.inheritance.account.Credit c) {
-        this.balance += c.getAmount();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankingAccount that = (BankingAccount) o;
+        return balance == that.balance;
     }
 
-    public void debit(ua.opnu.java.inheritance.account.Debit d) {
-        this.balance += d.getAmount();
+    @Override
+    public String toString() {
+        return "BankingAccount{balance=" + balance + "}";
     }
 }
